@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_27_200453) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_27_203339) do
   create_table "events", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -23,6 +23,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_27_200453) do
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_events_on_game_id"
     t.index ["host_id"], name: "index_events_on_host_id"
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer "sender_id", null: false
+    t.integer "event_id", null: false
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_reservations_on_event_id"
+    t.index ["sender_id"], name: "index_reservations_on_sender_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,4 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_27_200453) do
 
   add_foreign_key "events", "games"
   add_foreign_key "events", "hosts"
+  add_foreign_key "reservations", "events"
+  add_foreign_key "reservations", "senders"
 end
