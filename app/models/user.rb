@@ -3,11 +3,16 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  bio                    :text
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  location               :string
+#  pfp_url                :string
+#  phone_number           :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  username               :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
