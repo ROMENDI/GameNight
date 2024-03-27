@@ -25,5 +25,6 @@
 #
 class Event < ApplicationRecord
   belongs_to :game
-  belongs_to :host
+  belongs_to :host, class_name: 'User', foreign_key:'host_id'
+  has_many :reservations
 end

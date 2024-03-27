@@ -10,4 +10,5 @@
 #  updated_at  :datetime         not null
 #
 class Game < ApplicationRecord
+  has_many :events
 end
