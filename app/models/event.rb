@@ -27,4 +27,7 @@ class Event < ApplicationRecord
   belongs_to :game
   belongs_to :host, class_name: 'User', foreign_key:'host_id'
   has_many :reservations
+  validates :title, :date_time, presence: true
+  validates :capacity, numericality: { greater_than_or_equal_to: 1, only_integer: true }
+end
 end

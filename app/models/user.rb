@@ -23,6 +23,8 @@
 #
 class User < ApplicationRecord
 
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
+  
   has_many :hosted_events, class_name: 'Event', foreign_key: 'host_id'
   has_many :reservations, foreign_key: 'sender_id'
 
