@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_27_203930) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_29_235332) do
   create_table "events", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -61,7 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_27_203930) do
   end
 
   add_foreign_key "events", "games"
-  add_foreign_key "events", "hosts"
+  add_foreign_key "events", "users", column: "host_id"
   add_foreign_key "reservations", "events"
   add_foreign_key "reservations", "senders"
 end

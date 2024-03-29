@@ -21,7 +21,7 @@
 # Foreign Keys
 #
 #  game_id  (game_id => games.id)
-#  host_id  (host_id => hosts.id)
+#  host_id  (host_id => users.id)
 #
 class Event < ApplicationRecord
   belongs_to :game
@@ -30,4 +30,4 @@ class Event < ApplicationRecord
   validates :title, :date_time, presence: true
   validates :capacity, numericality: { greater_than_or_equal_to: 1, only_integer: true }
 end
-end
+
