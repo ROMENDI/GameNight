@@ -1,6 +1,6 @@
 <body>
   <h1>Welcome to GameNight!</h1>
-  <p>Connect, play, and discover board games with enthusiasts around you.</p>
+  <p>Discover & play board games with enthusiasts around you!</p>
   <!-- If the user is not signed in, show sign-up and login options -->
   <% unless user_signed_in? %>
     <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-primary" %>
@@ -10,7 +10,9 @@
   <% end %>
 <div>
     <h2>How GameNight Works</h2>
-    <p>Discover how you can join or host game nights and what makes GameNight special.</p>
+    <h3> Find an Event: Browse through upcoming game nights near your location. </h3> 
+    <h3> Join the Fun: Sign up for an event you like and meet new people. </h3> 
+    <h3> Host Your Own: Can't find an event that suits you? Host your own and invite others to join. </h3> 
 </div> 
 
 </body>
