@@ -1,18 +1,35 @@
 <body>
-  <h1>Welcome to GameNight!</h1>
-  <p>Discover & play board games with enthusiasts around you!</p>
-  <!-- If the user is not signed in, show sign-up and login options -->
-  <% unless user_signed_in? %>
-    <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-primary" %>
-    <%= link_to 'Login', new_user_session_path, class: "btn btn-secondary" %>
-  <% else %>
-   <p> <b> Discover Events Link </b> </p>
-  <% end %>
-<div>
-    <h2>How GameNight Works</h2>
-    <h3> Find an Event: Browse through upcoming game nights near your location. </h3> 
-    <h3> Join the Fun: Sign up for an event you like and meet new people. </h3> 
-    <h3> Host Your Own: Can't find an event that suits you? Host your own and invite others to join. </h3> 
-</div> 
+<div class="container py-5">
+    <header class="text-center mb-5">
+      <h1>Welcome to GameNight!</h1>
+      <p class="fs-4">Discover & play board games with fellow enthusiasts around you!</p>
+      <% unless user_signed_in? %>
+        <a href="<%= new_user_registration_path %>" class="btn btn-primary btn-lg me-2">Sign Up</a>
+        <a href="<%= new_user_session_path %>" class="btn btn-outline-secondary btn-lg">Login</a>
+      <% else %>
+        <a href="" class="btn btn-success btn-lg">Discover Events</a>
+      <% end %>
+    </header>
 
+    <div class="text-center mb-5">
+      <h2>How GameNight Works</h2>
+      <div class="row mt-4">
+        <div class="col-md-4">
+          <i class="fa-solid fa-calendar-days fa-3x"></i>
+          <h3 class="mt-2">Find an Event</h3>
+          <p>Browse through upcoming game nights near your location.</p>
+        </div>
+        <div class="col-md-4">
+          <i class="fa-solid fa-users fa-3x"></i>
+          <h3 class="mt-2">Join the Fun</h3>
+          <p>Sign up for an event you like and meet new people.</p>
+        </div>
+        <div class="col-md-4">
+          <i class="fa-solid fa-plus fa-3x"></i>
+          <h3 class="mt-2">Host Your Own</h3>
+          <p>Can't find an event that suits you? Host your own and invite others to join.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
