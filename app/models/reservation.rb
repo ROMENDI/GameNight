@@ -17,11 +17,11 @@
 # Foreign Keys
 #
 #  event_id   (event_id => events.id)
-#  sender_id  (sender_id => senders.id)
+#  sender_id  (sender_id => users.id)
 #
 class Reservation < ApplicationRecord
   belongs_to :sender, class_name: 'User', foreign_key: 'sender_id'
   belongs_to :event
   enum status: { yes: 0, maybe: 1 }
-  validates :status 
+  validates :status, presence: true
 end
