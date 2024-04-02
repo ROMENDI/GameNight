@@ -9,6 +9,9 @@
     <div class="collapse navbar-collapse" id="navbarGameNight">
       <ul class="navbar-nav ms-auto">
         <% if user_signed_in? %>
+        <li class="nav-item">
+            <%= link_to 'Host Event', new_event_path, class: "nav-link" %>
+          </li>
           <li class="nav-item">
             <%= link_to 'Edit Profile', edit_user_registration_path, class: "nav-link" %>
           </li>
