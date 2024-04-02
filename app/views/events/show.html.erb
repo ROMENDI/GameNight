@@ -1,2 +1,30 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      Event Details
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= @event.title %></h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%= @event.date_time.strftime("%A, %B %e, %Y at %l:%M %p") %></h6>
+      <% if @event.game.present? %>
+        <div class="mb-3">
+          <strong>Game:</strong> <%= @event.game.title %>
+          <% if @event.game.image_url.present? %>
+            <div>
+              <%= image_tag @event.game.image_url, alt: @event.game.title, class: "img-fluid mt-2" %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      <p class="card-text"><%= @event.description %></p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Location: <%= @event.location %></li>
+        <li class="list-group-item">Capacity: <%= @event.capacity %></li>
+        <% if @event.host %>
+          <li class="list-group-item">Hosted by: <%= @event.host.username %></li>
+        <% end %>
+      </ul>
+      <%= link_to 'Back to Events', events_path, class: "btn btn-primary mt-3" %>
+    </div>
+  </div>
+</div>
