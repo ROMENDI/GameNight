@@ -1,0 +1,23 @@
+-<div class="container mt-5">
+  <h2>Upcoming Events</h2>
+  <div class="row">
+    <% @events.each do |event| %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title"><%= event.title %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= event.date_time.strftime("%B %d, %Y %H:%M") %></h6>
+            <p class="card-text"><strong>Game:</strong> <%= event.game.title %></p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Location: <%= event.location %></li>
+            <li class="list-group-item">Capacity: <%= event.capacity %></li>
+          </ul>
+          <div class="card-body">
+            <%= link_to 'View Event', event_path(event), class: "card-link" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

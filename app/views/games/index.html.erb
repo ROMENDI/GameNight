@@ -1,0 +1,23 @@
+<div class="container mt-5">
+  <h2>Games Catalog</h2>
+  <div class="row">
+    <% @games.each do |game| %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <% if game.image_url.present? %>
+            <img src="<%= game.image_url %>" class="card-img-top" alt="<%= game.title %>">
+          <% else %>
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="Placeholder Image">
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= game.title %></h5>
+            <p class="card-text"><%= game.description.truncate(100) %></p>
+          </div>
+          <div class="card-footer">
+            <%= link_to 'View Events', game_path(game), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

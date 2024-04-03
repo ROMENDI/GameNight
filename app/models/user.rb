@@ -27,6 +27,7 @@ class User < ApplicationRecord
   
   has_many :hosted_events, class_name: 'Event', foreign_key: 'host_id'
   has_many :reservations, foreign_key: 'sender_id'
+  has_many :reserved_events, through: :reservations, source: :event
 
 
   # Include default devise modules. Others available are:

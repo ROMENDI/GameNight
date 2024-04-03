@@ -1,0 +1,36 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      Event Details
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= @event.title %></h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%= @event.date_time.strftime("%A, %B %e, %Y at %l:%M %p") %></h6>
+      <% if @event.game.present? %>
+        <div class="mb-3">
+          <strong>Game:</strong> <%= @event.game.title %>
+          <% if @event.game.image_url.present? %>
+            <div>
+              <%= link_to game_path(@event.game) do %>
+            <%= image_tag @event.game.image_url, class: "img-fluid rounded-start", alt: "#{@event.game.title}" %>
+          <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      <p class="card-text"><%= @event.description %></p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Location: <%= @event.location %></li>
+        <li class="list-group-item">Capacity: <%= @event.capacity %></li>
+        <% if @event.host %>
+          <li class="list-group-item">Hosted by: <%= @event.host.username %></li>
+        <% end %>
+      </ul>
+      <%= link_to 'Back to Events', events_path, class: "btn btn-primary mt-3 mr-3" %>
+      <% if user_signed_in? && current_user == @event.host %>
+        <%= link_to 'Edit Event', edit_event_path(@event), class: "btn btn-warning mt-3" %>
+        <%= link_to 'Delete Event', event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },class: 'btn btn-danger mt-3' %>
+      <% end %>
+    </div>
+  </div>
+</div>
