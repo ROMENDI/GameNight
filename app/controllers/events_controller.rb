@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: [:edit, :update]
+
   def index
     @events = Event.all
   end
@@ -37,9 +39,24 @@ class EventsController < ApplicationController
   end
 
   def update
+    if @event.update(event_params)
+      redirect_to @event, notice: 'Event was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end 
 
   def destroy
   end 
+
+  private
+
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
+  def event_params
+    params.require(:event).permit(:title, :description, :date_time, :location, :capacity, :game_id)
+  end
   
 end

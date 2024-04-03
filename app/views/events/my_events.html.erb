@@ -8,15 +8,15 @@
         <% if event.game.image_url.present? %>
           <div class="row g-0">
             <div class="col-md-4">
-              <%= image_tag event.game.image_url, class: "img-fluid rounded-start" %>
+              <%= image_tag event.game.image_url, class: "img-fluid rounded-start", alt: "#{event.game.title}" %>
             </div>
             <div class="col-md-8">
               <div class="card-body">
                 <h5 class="card-title"><%= event.title %></h5>
-                <p class="card-text"><%= event.description %></p>
                 <p class="card-text"><small class="text-muted">Date: <%= event.date_time.strftime("%B %d, %Y at %I:%M %p") %></small></p>
                 <p class="card-text"><small class="text-muted">Location: <%= event.location %></small></p>
                 <%= link_to 'View Event', event_path(event), class: "btn btn-primary" %>
+                <%= link_to 'Edit Event', edit_event_path(event), class: "btn btn-warning" %>
               </div>
             </div>
           </div>
@@ -44,7 +44,6 @@
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title"><%= event.title %></h5>
-              <p class="card-text"><%= event.description %></p>
               <p class="card-text"><small class="text-muted">Date: <%= event.date_time.strftime("%B %d, %Y at %I:%M %p") %></small></p>
               <p class="card-text"><small class="text-muted">Location: <%= event.location %></small></p>
               <p class="card-text"><strong>Status:</strong> <%= reservation.status.titleize %></p>
