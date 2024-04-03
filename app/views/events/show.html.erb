@@ -11,7 +11,9 @@
           <strong>Game:</strong> <%= @event.game.title %>
           <% if @event.game.image_url.present? %>
             <div>
-              <%= image_tag @event.game.image_url, alt: @event.game.title, class: "img-fluid mt-2" %>
+              <%= link_to game_path(@event.game) do %>
+            <%= image_tag @event.game.image_url, class: "img-fluid rounded-start", alt: "#{@event.game.title}" %>
+          <% end %>
             </div>
           <% end %>
         </div>
@@ -24,7 +26,10 @@
           <li class="list-group-item">Hosted by: <%= @event.host.username %></li>
         <% end %>
       </ul>
-      <%= link_to 'Back to Events', events_path, class: "btn btn-primary mt-3" %>
+      <%= link_to 'Back to Events', events_path, class: "btn btn-primary mt-3 mr-3" %>
+      <% if user_signed_in? && current_user == @event.host %>
+        <%= link_to 'Edit Event', edit_event_path(@event), class: "btn btn-warning mt-3" %>
+      <% end %>
     </div>
   </div>
 </div>
