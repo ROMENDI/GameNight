@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <h2>My Events</h2>
   <hr>
-  <h3>Events I'm Hosting</h3>
+  <h5>Events I'm Hosting</h5>
   <% if @hosted_events.any? %>
     <% @hosted_events.each do |event| %>
       <div class="card mb-3">
@@ -32,7 +32,7 @@
     <p>You are not hosting any events.</p>
   <% end %>
   <hr>
-  <h3>Events I've Reserved</h3>
+  <h5>Events I've Reserved</h5>
   <% if @reserved_events.any? %>
     <% @reserved_events.each do |event| %>
       <% reservation = event.reservations.find_by(sender: current_user) %>

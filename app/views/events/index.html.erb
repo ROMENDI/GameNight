@@ -1,5 +1,6 @@
 -<div class="container mt-5">
   <h2>Upcoming Events</h2>
+  <hr>
   <div class="row">
     <% @events.each do |event| %>
       <div class="col-md-4 mb-4">
@@ -11,7 +12,7 @@
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Location: <%= event.location %></li>
-            <li class="list-group-item">Capacity: <%= event.capacity %></li>
+            <li class="list-group-item">Remaining Spots: <%= event.capacity - event.reservations.where(status: 'yes').count %> </li>
           </ul>
           <div class="card-body">
             <%= link_to 'View Event', event_path(event), class: "card-link" %>
