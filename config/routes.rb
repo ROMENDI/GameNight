@@ -15,4 +15,5 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update]
 
+  get 'my_events', to: 'events#my_events'
 end

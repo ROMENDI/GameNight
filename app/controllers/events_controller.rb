@@ -7,6 +7,11 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def my_events
+    @hosted_events = current_user.hosted_events
+    @reserved_events = current_user.reserved_events 
+  end
+
 
   def new
     @event = Event.new
