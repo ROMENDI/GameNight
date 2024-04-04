@@ -7,20 +7,25 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarGameNight">
-      <ul class="navbar-nav ms-auto">
-        <% if user_signed_in? %>
-        <li class="nav-item">
+      <% if user_signed_in? %>
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
             <%= link_to 'Discover', events_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to 'My Events', my_events_path, class: "nav-link" %>
           </li>
-        <li class="nav-item">
-            <%= link_to 'Host Event', new_event_path, class: "nav-link" %>
-          </li>
           <li class="nav-item">
             <%= link_to 'Games', games_path, class: "nav-link" %>
           </li>
+          <li class="nav-item">
+            <%= link_to 'Host Event', new_event_path, class: "nav-link" %>
+          </li>
+        </ul>
+      <% end %>
+
+      <ul class="navbar-nav ms-auto">
+        <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to 'Edit Profile', edit_user_registration_path, class: "nav-link" %>
           </li>
