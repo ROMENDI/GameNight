@@ -8,6 +8,6 @@ services:
   - type: web
     name: gamenight
     plan: free
-    env: rubyxw
+    env: ruby
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
