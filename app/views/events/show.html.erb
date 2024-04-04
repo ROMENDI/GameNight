@@ -21,16 +21,38 @@
       <p class="card-text"><%= @event.description %></p>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Location: <%= @event.location %></li>
-        <li class="list-group-item">Capacity: <%= @event.capacity %></li>
+        <li class="list-group-item">Remaining Spots: <%= @event.capacity - @event.reservations.where(status: 'yes').count %> </li>
         <% if @event.host %>
           <li class="list-group-item">Hosted by: <%= @event.host.username %></li>
         <% end %>
       </ul>
-      <%= link_to 'Back to Events', events_path, class: "btn btn-primary mt-3 mr-3" %>
+      <% if current_user == @event.host %>
+        <%= link_to 'Back to My Events', my_events_path, class: "btn btn-primary mt-3 mr-3" %>
+      <% else %>
+        <%= link_to 'Back to Events', events_path, class: "btn btn-primary mt-3 mr-3" %>
+      <% end %>
       <% if user_signed_in? && current_user == @event.host %>
         <%= link_to 'Edit Event', edit_event_path(@event), class: "btn btn-warning mt-3" %>
         <%= link_to 'Delete Event', event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },class: 'btn btn-danger mt-3' %>
       <% end %>
     </div>
   </div>
+  <hr>
+  <h3>Reservations</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @event.reservations.each do |reservation| %>
+        <tr>
+          <td><%= reservation.sender.username %></td>
+          <td><%= reservation.status.titleize %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
