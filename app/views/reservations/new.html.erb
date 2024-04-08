@@ -1,0 +1,35 @@
+<%# app/views/reservations/new.html.erb %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <div class="card-header">
+          <h2>New Reservation for <%= @event.title %></h2>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><strong>Location:</strong> <%= @event.location %></p>
+          <p class="card-text"><strong>Time:</strong> <%= @event.date_time.strftime("%B %d, %Y at %H:%M") %></p>
+          <p class="card-text"><strong>Host:</strong> <%= @event.host.username %></p>
+          <p class="card-text">
+            <strong>Contact:</strong>
+            <%= @event.host.email %>,
+            <%= @event.host.phone_number %>
+          </p>
+          <hr>
+
+          <%= form_for @reservation do |f| %>
+            <%= f.hidden_field :event_id, value: @event.id %>
+
+            <div class="mb-3">
+              <%= f.label :status, class: 'form-label' %>
+              <%= f.select :status, Reservation.statuses.keys.map { |status| [status.titleize, status] },
+                           {}, {class: "form-select"} %>
+            </div>
+
+            <%= f.submit "Submit Reservation", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

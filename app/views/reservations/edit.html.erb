@@ -1,0 +1,43 @@
+<%# app/views/reservations/edit.html.erb %>
+<div class="container mt-5">
+  <%= form_for @reservation do |f| %>
+    <% if @reservation.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+        <ul>
+        <% @reservation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="card mb-3">
+      <div class="card-header">
+        Event Details
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"><%= @reservation.event.title %></h5>
+        <p class="card-text"><strong>Date:</strong> <%= @reservation.event.date_time.strftime("%B %d, %Y at %I:%M %p") %></p>
+        <p class="card-text"><strong>Location:</strong> <%= @reservation.event.location %></p>
+        <p class="card-text"><strong>Host:</strong> <%= @reservation.sender.username %></p>
+        <!-- Hidden field for event_id to link reservation with the event on update -->
+        <%= f.hidden_field :event_id, value: @reservation.event_id %>
+      </div>
+    </div>
+
+    <div class="field mb-3">
+      <%= f.label :status %>
+      <%= f.select :status, Reservation.statuses.keys.map { |status| [status.titleize, status] }, {}, {class: "form-select"} %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Update Reservation", class: "btn btn-primary" %>
+    </div>
+
+    <%= link_to 'Delete Reservation', reservation_path(@reservation), 
+            data: { turbo_method: "delete", turbo_confirm: 'Are you sure?' }, 
+            class: 'btn btn-danger mt-2' %>
+
+  <% end %>
+</div>
