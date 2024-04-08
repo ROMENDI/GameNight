@@ -27,6 +27,12 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def destroy
+    @event = @reservation.event # Capture the event before deleting for redirection
+    @reservation.destroy
+    redirect_to @event, notice: 'Reservation was successfully cancelled.'
+  end
+
   private
 
   def set_reservation
