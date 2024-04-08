@@ -29,7 +29,8 @@
       <% if current_user == @event.host %>
         <%= link_to 'Back to My Events', my_events_path, class: "btn btn-primary mt-3 mr-3" %>
       <% else %>
-        <%= link_to 'Back to Events', events_path, class: "btn btn-primary mt-3 mr-3" %>
+      <%= link_to 'Make Reservation', new_reservation_path(event_id: @event.id), class: "btn btn-primary mt-3" %>
+      <%= link_to 'Back to Events', events_path, class: "btn btn-secondary mt-3 mr-3" %>
       <% end %>
       <% if user_signed_in? && current_user == @event.host %>
         <%= link_to 'Edit Event', edit_event_path(@event), class: "btn btn-warning mt-3" %>

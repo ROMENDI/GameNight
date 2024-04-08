@@ -1,30 +1,39 @@
 class ReservationsController < ApplicationController
+  before_action :set_reservation, only: [:edit, :update]
+
+  def new
+    @event = Event.find(params[:event_id])
+    @reservation = Reservation.new
+  end
+
   def create
     @reservation = Reservation.new(reservation_params)
-    @reservation.sender = current_user
+    @reservation.sender = current_user # Assuming you have user authentication
 
     if @reservation.save
-      redirect_to event_path(@reservation.event), notice: "Reservation successfully created."
+      redirect_to @reservation.event, notice: 'Reservation was successfully created.'
     else
-      render "events/show", status: :unprocessable_entity
+      render :new
     end
   end
+
+  def edit; end
 
   def update
-    @reservation = current_user.reservations.find(params[:id])
-
     if @reservation.update(reservation_params)
-      redirect_to event_path(@reservation.event), notice: "Reservation successfully updated."
+      redirect_to @reservation.event, notice: 'Reservation was successfully updated.'
     else
-      render :edit, status: :unprocessable_entity
+      render :edit
     end
   end
 
-  def destroy
-    @reservation = current_user.reservations.find(params[:id])
-    event = @reservation.event
-    @reservation.destroy
-    redirect_to event_path(event), notice: 'Reservation successfully canceled.'
+  private
+
+  def set_reservation
+    @reservation = Reservation.find(params[:id])
   end
 
+  def reservation_params
+    params.require(:reservation).permit(:event_id, :status)
+  end
 end

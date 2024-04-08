@@ -49,6 +49,7 @@
                 <p class="card-text"><small class="text-muted">Location: <%= event.location %></small></p>
                 <p class="card-text"><strong>Status:</strong> <%= reservation.status.titleize %></p>
                 <%= link_to 'View Event', event_path(event), class: "btn btn-primary" %>
+                <%= link_to 'Update Reservation', edit_reservation_path(reservation), class: "btn btn-secondary" %>
               </div>
             </div>
           </div>

@@ -9,10 +9,10 @@ Rails.application.routes.draw do
 
   resources :events
 
-  resources :events do
-    resources :reservations, only: [:create, :update, :destroy]
-  end
-
+  resources :events
+    
+  resources :reservations, only: [:new, :create, :edit, :update]
+  
   resources :users, only: [:show, :edit, :update]
 
   get 'my_events', to: 'events#my_events'
