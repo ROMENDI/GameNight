@@ -13,7 +13,9 @@ class ReservationsController < ApplicationController
     if @reservation.save
       redirect_to @reservation.event, notice: 'Reservation was successfully created.'
     else
-      render :new
+    @event = @reservation.event
+    flash.now[:alert] = @reservation.errors.full_messages.to_sentence
+    render 'events/show'
     end
   end
 

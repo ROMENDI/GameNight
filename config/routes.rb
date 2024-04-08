@@ -8,10 +8,8 @@ Rails.application.routes.draw do
   resources :games
 
   resources :events
-
-  resources :events
     
-  resources :reservations, only: [:new, :create, :edit, :update]
+  resources :reservations
   
   resources :users, only: [:show, :edit, :update]
 
