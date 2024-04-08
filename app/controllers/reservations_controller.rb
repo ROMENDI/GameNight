@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:edit, :update]
-
+  before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  
   def new
     @event = Event.find(params[:event_id])
     @reservation = Reservation.new
@@ -30,7 +30,7 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-    @event = @reservation.event # Capture the event before deleting for redirection
+    @event = @reservation.event 
     @reservation.destroy
     redirect_to @event, notice: 'Reservation was successfully cancelled.'
   end
