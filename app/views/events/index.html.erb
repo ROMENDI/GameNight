@@ -1,4 +1,5 @@
--<div class="container mt-5">
+-
+<div class="container mt-5">
   <h2>Upcoming Events</h2>
   <hr>
   <div class="row">
@@ -12,7 +13,11 @@
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Location: <%= event.location %></li>
-            <li class="list-group-item">Remaining Spots: <%= event.capacity - event.reservations.where(status: 'yes').count %> </li>
+            <% if event.capacity - event.reservations.where(status: 'yes').count > 0 %>
+              <li class="list-group-item">Remaining Spots: <%= event.capacity - event.reservations.where(status: 'yes').count %> </li>
+            <% else %>
+              <span class="badge bg-warning text-dark mt-3">Fully Booked</span>
+            <% end %>
           </ul>
           <div class="card-body">
             <%= link_to 'View Event', event_path(event), class: "card-link" %>

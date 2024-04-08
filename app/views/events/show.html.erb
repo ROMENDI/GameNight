@@ -21,10 +21,13 @@
       <p class="card-text"><%= @event.description %></p>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Location: <%= @event.location %></li>
+        <li class="list-group-item">Hosted by: <%= @event.host.username %></li>
+        <% if @event.capacity - @event.reservations.where(status: 'yes').count > 0 %>
         <li class="list-group-item">Remaining Spots: <%= @event.capacity - @event.reservations.where(status: 'yes').count %> </li>
-        <% if @event.host %>
-          <li class="list-group-item">Hosted by: <%= @event.host.username %></li>
-        <% end %>
+        <% else %> 
+        <span class="badge bg-warning text-dark mt-3">Fully Booked</span>
+        <% end %> 
+        
       </ul>
       <% if user_signed_in? %>
         <% if current_user == @event.host || @event.reservations.exists?(sender: current_user) %>
@@ -33,7 +36,7 @@
             <%= link_to 'Edit Event', edit_event_path(@event), class: "btn btn-warning mt-3 mr-3" %>
             <%= link_to 'Delete Event', event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger mt-3' %>
           <% end %>
-        <% else %>
+        <% elsif @event.capacity - @event.reservations.where(status: 'yes').count > 0 %>
           <%= link_to 'Make Reservation', new_reservation_path(event_id: @event.id), class: "btn btn-primary mt-3" %>
         <% end %>
       <% end %>
