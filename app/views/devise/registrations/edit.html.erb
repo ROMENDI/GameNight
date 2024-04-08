@@ -4,11 +4,13 @@
       <div class="card">
         <div class="card-header">
           <h4>Edit Profile</h4>
+          <% if @user.pfp_url.present? %>
+          <img src="<%= @user.pfp_url %>" class="card-img-top img-fluid w-50 mx-auto d-block" alt="<%= @user.username %>'s profile picture">
+          <% end %>
         </div>
         <div class="card-body">
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
             <%= devise_error_messages! %>
-
             <div class="form-group mb-3">
               <%= f.label :username %>
               <%= f.text_field :username, autofocus: true, class: 'form-control', autocomplete: "username" %>
