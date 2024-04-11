@@ -6,7 +6,9 @@
 #  capacity    :integer
 #  date_time   :datetime
 #  description :text
+#  latitude    :float
 #  location    :string
+#  longitude   :float
 #  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -26,8 +28,7 @@
 class Event < ApplicationRecord
   belongs_to :game
   belongs_to :host, class_name: 'User', foreign_key:'host_id'
-  has_many :reservations
+  has_many :reservations, dependent: :destroy
   validates :title, :date_time, presence: true
   validates :capacity, numericality: { greater_than_or_equal_to: 1, only_integer: true }
 end
-

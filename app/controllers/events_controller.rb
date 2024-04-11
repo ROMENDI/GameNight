@@ -1,8 +1,12 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:edit, :update, :delete]
+  
+  def check_geocode_error
+    puts errors.full_messages.to_sentence
+  end
 
   def index
-    @events = Event.all
+    @events = Event.where.not(host_id: current_user.id)
   end
 
   def show

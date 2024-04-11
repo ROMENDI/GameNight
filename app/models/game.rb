@@ -10,6 +10,6 @@
 #  updated_at  :datetime         not null
 #
 class Game < ApplicationRecord
-  has_many :events
+  has_many :events, dependent: :destroy
   validates :title, :description, presence: true
 end
