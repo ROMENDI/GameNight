@@ -3,6 +3,10 @@ require "nokogiri"
 
 class BoardGameGeekService
   def self.import_games
+    Reservation.delete_all
+    Event.delete_all
+    Game.delete_all
+    User.delete_all
     game_ids = (1..50).to_a
     game_ids.each do |game_id|
       response = HTTParty.get("https://boardgamegeek.com/xmlapi2/thing?id=#{game_id}")
