@@ -1,13 +1,15 @@
 <body>
 <div class="container py-5">
     <header class="text-center mb-5">
-      <h1>Welcome to GameNight!</h1>
+      <h1>Welcome to GameKnight!</h1>
       <p class="fs-4">Discover & play board games with fellow enthusiasts around you!</p>
       <% unless user_signed_in? %>
         <a href="<%= new_user_registration_path %>" class="btn btn-primary btn-lg me-2">Sign Up</a>
         <a href="<%= new_user_session_path %>" class="btn btn-outline-secondary btn-lg">Login</a>
       <% else %>
-        <%= link_to 'Discover Events', events_path, class: "btn btn-success btn-lg" %>
+        <%= link_to events_path, class: "btn btn-success btn-lg" do %>
+          <i class="fas fa-dice"></i> Discover Events
+        <%end %>
       <% end %>
     </header>
 

@@ -1,24 +1,34 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+<nav class="navbar navbar-expand-lg navbar-dark mb-4" style="background-color: #065535;">
   <div class="container">
-    <%= link_to "GameNight", root_path, class: "navbar-brand" %>
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <i class="fas fa-chess-knight"></i> GameKnight
+    <% end %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarGameNight" aria-controls="navbarGameNight" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarGameNight">
+    <div class="collapse navbar-collapse" id="navbarGameKnight">
       <% if user_signed_in? %>
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <%= link_to 'Discover', events_path, class: "nav-link" %>
+            <%= link_to events_path, class: "nav-link" do %>
+              <i class="fas fa-search"></i> Discover
+            <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to 'My Events', my_events_path, class: "nav-link" %>
+            <%= link_to my_events_path, class: "nav-link" do %>
+              <i class="fas fa-calendar-alt"></i> My Events
+            <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Games', games_path, class: "nav-link" %>
+            <%= link_to games_path, class: "nav-link" do %>
+              <i class="fas fa-puzzle-piece"></i> Games
+            <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Host Event', new_event_path, class: "nav-link" %>
+            <%= link_to new_event_path, class: "nav-link" do %>
+              <i class="fas fa-plus-square"></i> Host Event
+            <% end %>
           </li>
         </ul>
       <% end %>
@@ -26,17 +36,25 @@
       <ul class="navbar-nav ms-auto">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to 'Edit Profile', edit_user_registration_path, class: "nav-link" %>
+            <%= link_to edit_user_registration_path, class: "nav-link" do %>
+              <i class="fas fa-user-edit"></i> Edit Profile
+            <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Sign Out', destroy_user_session_path, "data-turbo-method": :delete, class: "nav-link" %>
+            <%= link_to destroy_user_session_path, "data-turbo-method": :delete, class: "nav-link" do %>
+              <i class="fas fa-sign-out-alt"></i> Sign Out
+            <% end %>
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to 'Sign In', new_user_session_path, class: "nav-link" %>
+            <%= link_to new_user_session_path, class: "nav-link" do %>
+              <i class="fas fa-sign-in-alt"></i> Sign In
+            <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Sign Up', new_user_registration_path, class: "nav-link" %>
+            <%= link_to new_user_registration_path, class: "nav-link" do %>
+              <i class="fas fa-user-plus"></i> Sign Up
+            <% end %>
           </li>
         <% end %>
       </ul>

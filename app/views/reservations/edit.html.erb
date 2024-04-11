@@ -20,7 +20,7 @@
         <h5 class="card-title"><%= @reservation.event.title %></h5>
         <p class="card-text"><strong>Date:</strong> <%= @reservation.event.date_time.strftime("%B %d, %Y at %I:%M %p") %></p>
         <p class="card-text"><strong>Location:</strong> <%= @reservation.event.location %></p>
-        <p class="card-text"><strong>Host:</strong> <%= @reservation.sender.username %></p>
+        <p class="card-text"><strong>Host:</strong> <%= @reservation.event.host.username %></p>
         <!-- Hidden field for event_id to link reservation with the event on update -->
         <%= f.hidden_field :event_id, value: @reservation.event_id %>
       </div>
