@@ -1,11 +1,13 @@
--
 <div class="container mt-5">
-  <h2>Upcoming Events</h2>
+  <h2 class="mb-4">Upcoming Events Near You</h2>
   <hr>
   <div class="row">
     <% @events.each do |event| %>
       <div class="col-md-4 mb-4">
-        <div class="card h-100">
+        <div class="card h-100 shadow-sm"> <!-- Added shadow -->
+          <% if event.game.image_url.present? %>
+            <%= image_tag event.game.image_url, class: "card-img-top img-fluid", alt: "#{event.game.title}", style: "height: 200px; object-fit: cover;" %>
+          <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= event.title %></h5>
             <h6 class="card-subtitle mb-2 text-muted"><%= event.date_time.strftime("%B %d, %Y %H:%M") %></h6>
@@ -16,11 +18,13 @@
             <% if event.capacity - event.reservations.where(status: 'yes').count > 0 %>
               <li class="list-group-item">Remaining Spots: <%= event.capacity - event.reservations.where(status: 'yes').count %> </li>
             <% else %>
-              <span class="badge bg-warning text-dark mt-3">Fully Booked</span>
+              <div class="card-footer text-muted"> <!-- Changed to card-footer for consistency -->
+                Fully Booked
+              </div>
             <% end %>
           </ul>
           <div class="card-body">
-            <%= link_to 'View Event', event_path(event), class: "card-link" %>
+            <%= link_to 'View Event', event_path(event), class: "btn btn-primary" %> <!-- Changed to button for better visibility -->
           </div>
         </div>
       </div>
