@@ -3,18 +3,22 @@
   <br>
   <p class="text-muted"><%= truncate_to_sentences(@game.description, sentence_count: 3) %></p>
   <hr>
-  <div class="row">
-    <% @events.each do |event| %>
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title"><%= event.title %></h5>
-            <p class="card-text"><strong>Date:</strong> <%= event.date_time.strftime("%B %d, %Y at %H:%M") %></p>
-            <p class="card-text"><strong>Location:</strong> <%= event.location %></p>
-            <%= link_to 'View Event', event_path(event), class: "btn btn-primary" %>
+  <% if @events.present? %>
+    <div class="row">
+      <% @events.each do |event| %>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title"><%= event.title %></h5>
+              <p class="card-text"><strong>Date:</strong> <%= event.date_time.strftime("%B %d, %Y at %H:%M") %></p>
+              <p class="card-text"><strong>Location:</strong> <%= event.location %></p>
+              <%= link_to 'View Event', event_path(event), class: "btn btn-primary" %>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-muted">There are currently no upcoming events for <%= @game.title %>. Check back soon or host your own event!</p>
+  <% end %>
 </div>
