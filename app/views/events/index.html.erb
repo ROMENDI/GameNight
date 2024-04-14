@@ -1,5 +1,15 @@
 <div class="container mt-5">
   <h2 class="mb-4">Upcoming Events Near You</h2>
+  <%= form_with url: events_path, method: :get do |form| %>
+    <%= form.label :date, "Date:" %>
+    <%= form.date_field :date %>
+    <%= form.label :location, "Location" %>
+    <%= form.text_field :location %>
+    <%= form.label :capacity, "Minimum Capacity" %>
+    <%= form.number_field :capacity %>
+  
+    <%= form.submit "Search" %>
+  <% end %>
   <hr>
   <div class="row">
     <% @events.each do |event| %>
@@ -18,7 +28,7 @@
             <% if event.capacity - event.reservations.where(status: 'yes').count > 0 %>
               <li class="list-group-item">Remaining Spots: <%= event.capacity - event.reservations.where(status: 'yes').count %> </li>
             <% else %>
-              <div class="card-footer text-muted"> <!-- Changed to card-footer for consistency -->
+              <div class="card-footer text-muted">
                 Fully Booked
               </div>
             <% end %>

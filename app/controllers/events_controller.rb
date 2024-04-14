@@ -7,6 +7,20 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.where.not(host_id: current_user.id)
+    # Filter by date
+    if params[:date].present?
+      @events = @events.where('DATE(date_time) = ?', Date.parse(params[:date]))
+    end
+    # Filter by location
+    if params[:location].present?
+      @events = @events.where('location ILIKE ?', "%#{params[:location]}%")
+    end
+  
+    # Filter by capacity
+    if params[:capacity].present?
+      @events = @events.where('capacity >= ?', params[:capacity].to_i)
+    end
+
   end
 
   def show
