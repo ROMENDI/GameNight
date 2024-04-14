@@ -40,7 +40,7 @@
     <% if Game.any? %>
       <div class="form-group mb-3">
         <%= f.label :game_id, "Select a Game" %>
-        <%= f.collection_select :game_id, Game.all, :id, :title, include_blank: true, class: 'form-control' %>
+        <%= f.collection_select :game_id, Game.order(:title), :id, :title, include_blank: true, class: 'form-control' %>
       </div>
     <% end %>
 

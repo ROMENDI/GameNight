@@ -12,7 +12,7 @@
           <% if @event.game.image_url.present? %>
             <div>
               <%= link_to game_path(@event.game) do %>
-                <%= image_tag @event.game.image_url, class: "img-fluid rounded-start", style: "max-width: 200px; height: auto; margin: 20px 0;", alt: "#{@event.game.title}" %>
+                <%= image_tag @event.game.image_url, class: "img-fluid rounded-start", style: "max-width: 200px; height: auto; margin: 20px 0;", alt: "#{@event.game.title}", title: "Click to see more events for this game" %>
               <% end %>
             </div>
           <% end %>
