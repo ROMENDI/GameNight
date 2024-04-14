@@ -21,7 +21,7 @@
       <p class="card-text"><%= @event.description %></p>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Location: <%= @event.location %></li>
-        <li class="list-group-item"> Hosted by:<%= link_to @event.host.username, user_path(@event.host), class: "text-light" %> </li>
+        <li class="list-group-item"> Hosted by:<%= image_tag @event.host.pfp_url, class: "rounded-circle", style: "width: 40px; height: 40px;" %><%= link_to @event.host.username, user_path(@event.host), class: "text-light" %> </li>
         <% if @event.capacity - @event.reservations.where(status: 'yes').count > 0 %>
           <li class="list-group-item">Remaining Spots: <%= @event.capacity - @event.reservations.where(status: 'yes').count %> </li>
         <% else %>
@@ -69,6 +69,7 @@
       <% @event.reservations.each do |reservation| %>
         <tr>
           <td>
+            <%= image_tag reservation.sender.pfp_url, class: "rounded-circle", style: "width: 40px; height: 40px;" %>
             <%= link_to reservation.sender.username, user_path(reservation.sender), class: "text-light" %>
           </td>
           <td><%= reservation.status.titleize %></td>

@@ -7,6 +7,7 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.where.not(host_id: current_user.id)
+    @events = @events.where.not(id: current_user.reservations.select(:event_id))
     # Filter by date
     if params[:date].present?
       @events = @events.where('DATE(date_time) = ?', Date.parse(params[:date]))
