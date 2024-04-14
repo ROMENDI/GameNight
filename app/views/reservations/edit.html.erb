@@ -5,9 +5,9 @@
       <div id="error_explanation" class="alert alert-danger">
         <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
         <ul>
-        <% @reservation.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
+          <% @reservation.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
         </ul>
       </div>
     <% end %>
@@ -32,12 +32,10 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "Update Reservation", class: "btn btn-primary" %>
+      <%= f.submit "Update Reservation", class: "btn btn-primary me-2" %>
+    <%= link_to reservation_path(@reservation), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
+      <i class="fas fa-trash-alt"></i> Delete Reservation
+    <% end %>
     </div>
-
-    <%= link_to 'Delete Reservation', reservation_path(@reservation), 
-            data: { turbo_method: "delete", turbo_confirm: 'Are you sure?' }, 
-            class: 'btn btn-danger mt-2' %>
-
   <% end %>
 </div>

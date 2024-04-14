@@ -10,11 +10,13 @@
           <% else %>
             <img src="https://via.placeholder.com/150" class="card-img-top img-fluid" alt="Placeholder Image" style="height: 250px; object-fit: cover;">
           <% end %>
-          <div class="card-body d-flex flex-column"> <!-- Flex column for spacing -->
+          <div class="card-body d-flex flex-column">
             <h5 class="card-title"><%= game.title %></h5>
-            <p class="card-text flex-grow-1"><%= game.description.truncate(100) %></p> <!-- Flex grow for consistent spacing -->
+            <p class="card-text flex-grow-1"><%= game.description.truncate(100) %></p>
             <div class="mt-3">
-              <%= link_to 'View Events', game_path(game), class: "btn btn-primary w-100" %> <!-- Full-width button -->
+              <%= link_to game_path(game), class: "btn btn-primary w-100" do %>
+                <i class="fas fa-eye"></i> View Events
+              <% end %>
             </div>
           </div>
         </div>

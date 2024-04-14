@@ -42,15 +42,17 @@
               <%= f.label :capacity, class: 'form-label' %>
               <%= f.number_field :capacity, min: 1, class: 'form-control', placeholder: "Maximum Attendees" %>
             </div>
-
             <div class="mb-3">
               <%= f.label :game_id, "Select a Game", class: 'form-label' %>
               <%= f.collection_select :game_id, @games, :id, :title, { prompt: "Choose a Game" }, { class: 'form-control' } %>
             </div>
-
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <%= f.submit "Create Event", class: 'btn btn-primary' %>
-              <%= link_to 'Cancel', root_path, class: 'btn btn-secondary ms-2' %>
+              <%= f.submit class: 'btn btn-primary' do %>
+                <i class="fas fa-check"></i> Create Event
+              <% end %>
+              <%= link_to root_path, class: 'btn btn-secondary ms-2' do %>
+                <i class="fas fa-times"></i> Cancel
+              <% end %>
             </div>
           <% end %>
         </div>

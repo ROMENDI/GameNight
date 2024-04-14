@@ -12,7 +12,9 @@
               <h5 class="card-title"><%= event.title %></h5>
               <p class="card-text"><strong>Date:</strong> <%= event.date_time.strftime("%B %d, %Y at %H:%M") %></p>
               <p class="card-text"><strong>Location:</strong> <%= event.location %></p>
-              <%= link_to 'View Event', event_path(event), class: "btn btn-primary" %>
+              <%= link_to event_path(event), class: "btn btn-primary" do %>
+                <i class="fas fa-eye"></i> View Event
+              <% end %> 
             </div>
           </div>
         </div>

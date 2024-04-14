@@ -46,6 +46,7 @@
 
     <%= f.submit "Update Event", class: 'btn btn-primary' %>
   <% end %>
-
-  <%= link_to 'Back to Event', @event, class: 'btn btn-secondary mt-3' %>
+  <%= link_to @event, class: 'btn btn-secondary mt-3' do %>
+    <i class="fas fa-arrow-left"></i> Back to Event
+  <% end %>
 </div>
