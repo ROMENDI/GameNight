@@ -29,8 +29,8 @@ class EventsController < ApplicationController
   end
 
   def my_events
-    @hosted_events = current_user.hosted_events
-    @reserved_events = current_user.reserved_events 
+    @hosted_events = current_user.hosted_events.order(date_time: :asc)
+    @reserved_events = current_user.reserved_events.order(date_time: :asc)
   end
 
 
