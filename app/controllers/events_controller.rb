@@ -14,7 +14,7 @@ class EventsController < ApplicationController
     end
     # Filter by location
     if params[:location].present?
-      @events = @events.where('location ILIKE ?', "%#{params[:location]}%")
+      @events = @events.where('location LIKE ?', "%#{params[:location]}%")
     end
   
     # Filter by capacity
@@ -37,6 +37,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @games = Game.all.order(:title)
+    @event.game_id = params[:game_id] if params[:game_id].present?
   end
   
   def create

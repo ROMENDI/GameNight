@@ -14,7 +14,7 @@
               <p class="card-text"><strong>Location:</strong> <%= event.location %></p>
               <%= link_to event_path(event), class: "btn btn-primary" do %>
                 <i class="fas fa-eye"></i> View Event
-              <% end %> 
+              <% end %>
             </div>
           </div>
         </div>
@@ -22,5 +22,8 @@
     </div>
   <% else %>
     <p class="text-muted">There are currently no upcoming events for <%= @game.title %>. Check back soon or host your own event!</p>
+    <%= link_to new_event_path(game_id: @game.id), class: "btn btn-success" do %>
+      <i class="fas fa-plus-circle"></i> Host Event
+    <% end %>
   <% end %>
 </div>

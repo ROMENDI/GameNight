@@ -24,4 +24,5 @@ class Reservation < ApplicationRecord
   belongs_to :event
   enum status: { yes: 0, maybe: 1 }
   validates :status, presence: true
+  validates :user_id, uniqueness: { scope: :event_id, message: "You have already made a reservation for this event." }
 end
