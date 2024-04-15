@@ -1,5 +1,15 @@
 <div class="container mt-5">
   <h2 class="mb-4">Games Catalog (A-Z)</h2>
+  <div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6"> <!-- Adjust the column size as needed -->
+      <%= form_with url: games_path, method: :get, class: "d-flex" do |form| %>
+        <%= form.text_field :search, placeholder: "Search games...", class: "form-control me-2" %>
+        <%= form.submit "Search", class: "btn btn-outline-secondary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
   <hr>
   <div class="row">
     <% @games.each do |game| %>

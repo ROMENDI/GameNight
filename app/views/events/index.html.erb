@@ -1,15 +1,17 @@
 <div class="container mt-5">
   <h2 class="mb-4">Upcoming Events Near You</h2>
-  <%= form_with url: events_path, method: :get do |form| %>
-    <%= form.label :date, "Date:" %>
-    <%= form.date_field :date %>
-    <%= form.label :location, "Location" %>
-    <%= form.text_field :location %>
-    <%= form.label :capacity, "Minimum Event Size" %>
-    <%= form.number_field :capacity %>
+  <%= form_with url: events_path, method: :get, style: 'display: flex; flex-direction: row; align-items: center;' do |form| %>
+  <%= form.label :date, "Date:", style: 'margin-right: 10px;' %>
+  <%= form.date_field :date, style: 'margin-right: 10px;' %>
 
-    <%= form.button "<i class='fas fa-search'></i> Search".html_safe, class: 'btn btn-secondary btn-sm' %>
-  <% end %>
+  <%= form.label :location, "Location:", style: 'margin-right: 10px;' %>
+  <%= form.text_field :location, style: 'margin-right: 10px;' %>
+
+  <%= form.label :capacity, "Minimum Event Size:", style: 'margin-right: 10px;' %>
+  <%= form.number_field :capacity, style: 'margin-right: 10px;' %>
+
+  <%= form.button "<i class='fas fa-search'></i> Search".html_safe, class: 'btn btn-secondary' %>
+<% end %>
   <hr>
   <div class="row">
     <% @events.each do |event| %>
@@ -20,7 +22,7 @@
           <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= event.title %></h5>
-            <h6 class="card-subtitle mb-2 text-muted"><%= event.date_time.strftime("%B %d, %Y %H:%M") %></h6>
+            <h6 class="card-subtitle mb-2 text-muted"><%= event.date_time.strftime("%B %d, %Y %I:%M %p") %></h6>
             <p class="card-text"><strong>Game:</strong> <%= event.game.title %></p>
           </div>
           <ul class="list-group list-group-flush">
