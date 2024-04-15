@@ -28,7 +28,8 @@ h1, h2, h3 {
 }
 
 .card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; ]
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; 
+  animation: fadeIn 0.5s ease-out;
 }
 
 .card:hover {
@@ -44,4 +45,29 @@ h1, h2, h3 {
 .btn:hover {
   transform: scale(1.1);
 }
+.table-hover tbody tr:hover {
+  background-color: #f8f9fa; 
+  transition: background-color 0.3s ease-in-out; 
+}
 
+.table-hover tbody tr:hover td {
+  font-weight: bold; 
+  color: #495057; 
+}
+
+.img-glow:hover {
+  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.9); 
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
