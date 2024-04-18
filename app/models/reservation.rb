@@ -35,7 +35,4 @@ class Reservation < ApplicationRecord
       errors.add(:base, "Hosts cannot reserve their own event")
     end
   end
-
-
-
 end
