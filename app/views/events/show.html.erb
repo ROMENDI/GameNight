@@ -30,7 +30,8 @@
 
       </ul>
       <% if user_signed_in? %>
-        <% if current_user == @event.host || @event.reservations.exists?(sender: current_user) %>
+        <% current_reservation = @event.reservations.find_by(sender: current_user) %>
+        <% if current_user == @event.host || current_reservation %>
           <%= link_to my_events_path, class: "btn btn-primary mt-3" do %>
             <i class="fas fa-arrow-left"></i> Back to My Events
           <% end %>
@@ -40,6 +41,10 @@
             <% end %>
             <%= link_to event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger mt-3' do %>
               <i class="fas fa-trash-alt"></i> Delete Event
+            <% end %>
+          <% else %> 
+            <%= link_to edit_reservation_path(current_reservation), class: "btn btn-secondary mt-3" do %>
+              <i class="fas fa-pen"></i> Update Reservation
             <% end %>
           <% end %>
         <% elsif @event.capacity - @event.reservations.where(status: 'yes').count > 0 %>
