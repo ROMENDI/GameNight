@@ -10,11 +10,6 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     @reservation.sender = current_user # Assuming you have user authentication
 
-    if @event.host_id == current_user.id
-      redirect_to @event, alert: "You cannot make a reservation for your own event."
-      return
-    end
-
     if @reservation.save
       redirect_to @reservation.event, notice: "Reservation was successfully created."
     else
