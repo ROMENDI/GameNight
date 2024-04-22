@@ -1,54 +1,78 @@
-# Rails Template
+# GameNight
 
-This is a base Ruby on Rails repository configured for learning with Codespaces (and Gitpod).
+GameNight is a board game meetup application designed to connect board game enthusiasts. It simplifies the process of finding player 
+organizing meetups, and accessing a wider variety of games.
 
-- Ruby version: `3.2.1`
-- Rails version: `7.0.4.3`
+## Features
 
+- **Profile Creation**: Users can create profiles. 
+- **Event Browsing**: Browse upcoming board game events in your area.
+- **Event Search**: Search for events based on location, and date.
+- **RSVP to Events**: Easily RSVP to the events you want to attend.
+- **Event Hosting**: Host your own events and manage event details such as date, time, location, and the games being played. 
+- **Event Management**: Manage all of your hosted events and reserved events. 
+- **Games Catalog**: View upcoming events for specific games. 
 
-We've added additional Ruby gems and other software that aren't automatically available in a new Rails app.
+## Limitations
 
-### Additional gems:
+- **Games Database**: The games in the current games database is limited based on the current API being used. 
+- **Geographic Coverage**: The application might initially have limited geographic coverage. Users in certain areas may not find many events or participants. 
+- **Scalability**: The app's current backend infrastructure may not initially support a very high number of users or simultaneous event listings without performance degradation.
 
-- [`appdev_support`](https://github.com/firstdraft/appdev_support)
-- [`annotate`](https://github.com/ctran/annotate_models)
-- [`awesome_print`](https://github.com/awesome-print/awesome_print)
-- [`better_errors`](https://github.com/BetterErrors/better_errors)
-- [`binding_of_caller`](https://github.com/banister/binding_of_caller)
-- [`dotenv-rails`](https://github.com/bkeepers/dotenv)
-- [`draft_generators`](https://github.com/firstdraft/draft_generators/)
-- [`draft_matchers`](https://github.com/jelaniwoods/draft_matchers/)
-- [`devise`](https://github.com/heartcombo/devise)
-- [`faker`](https://github.com/faker-ruby/faker)
-- [`grade_runner`](https://github.com/firstdraft/grade_runner/)
-- [`htmlbeautifier`](https://github.com/threedaymonk/htmlbeautifier/)
-- [`http`](https://github.com/httprb/http)
-- [`pry_rails`](https://github.com/pry/pry-rails)
-- [`rails_db`](https://github.com/igorkasyanchuk/rails_db)
-- [`rails-erd`](https://github.com/voormedia/rails-erd)
-- [`rspec-html-matchers`](https://github.com/kucaahbe/rspec-html-matchers)
-- [`rspec-rails`](https://github.com/rspec/rspec-rails)
-- [`rufo`](https://github.com/ruby-formatter/rufo)
-- [`specs_to_readme`](https://github.com/firstdraft/specs_to_readme)
-- [`table_print`](https://github.com/arches/table_print)
-- [`web_git`](https://github.com/firstdraft/web_git)
-- [`webmock`](https://github.com/bblimke/webmock)
+## Getting Started
 
-### Additional software:
-- OS Ubuntu 20.04.5 LTS
-- Chromedriver
-- Fly.io's `flyctl`
-- Google Chrome (headless browser)
-- Graphviz
-- Heroku 
-- Node JS 18
-- NPM 8.19.3
-- Parity
-- Postgresql 12
-- Redis
-- Yarn
+These instructions will get you a copy of GameNight up and running on your local machine for development and testing.
 
-### VS Code extensions:
-- aliariff.vscode-erb-beautify
-- mbessey.vscode-rufo
-- vortizhe.simple-ruby-erb
+1. **Clone the repository** 
+
+   `git clone https://github.com/romendi/GameNight.git `
+
+2. **Install dependencies**
+
+  
+    Install the necessary Ruby gems and node modules: `bundle install`
+
+3. **Setup Database**
+
+  
+    Migrate your database: `rake db:migrate`
+
+4. **Sample Data**
+
+  
+    Copy the sample environment file and set up your environment variables: `rake sample_data`
+
+5. **Start the Server**
+
+    Run the Rails server: `bin/dev`
+
+6. **Visit the Application**
+
+    Open your browser and go to: `http://localhost:3000`
+
+## Contributing to GameNight
+
+I welcome contributions. Here’s how you can contribute:
+
+### Guidelines
+
+- **Code Style**: Follow the [Ruby Style Guide](https://github.com/rubocop-hq/ruby-style-guide).
+- **Commit Messages**: Write meaningful commit messages and include a reference to related issues if any.
+- **Testing**: Add tests for new features and ensure that all tests pass before submitting a pull request.
+
+### Submitting Pull Requests
+
+1. Push your changes to your forked branch
+2. Open a pull request against the main branch of the `GameNight` repository.
+3. Describe your changes in detail in the pull request description.
+
+### Branch Naming Conventions
+
+**Use short, descriptive names for branches:**
+- `feature/add_chess_game`
+- `bugfix/login_issue`
+- `docs/update_readme`
+
+### Review Process
+
+Contributions will be reviewed by me and feedback or approval will be given. 
