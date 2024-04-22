@@ -17,13 +17,15 @@
     <% @events.each do |event| %>
       <div class="col-md-4 mb-4">
         <div class="card h-100 shadow-sm"> <!-- Added shadow -->
-          <% if event.game.image_url.present? %>
+          <% if event.game.present? && event.game.image_url.present? %>
             <%= image_tag event.game.image_url, class: "card-img-top img-fluid", alt: "#{event.game.title}", style: "height: 200px; object-fit: cover;" %>
           <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= event.title %></h5>
             <h6 class="card-subtitle mb-2 text-muted"><%= event.date_time.strftime("%B %d, %Y %I:%M %p") %></h6>
+            <% if event.game.present?%>
             <p class="card-text"><strong>Game:</strong> <%= event.game.title %></p>
+            <%end%>
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Location: <%= event.location %></li>
