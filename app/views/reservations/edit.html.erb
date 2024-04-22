@@ -33,7 +33,9 @@
 
     <div class="actions">
       <%= f.submit "Update Reservation", class: "btn btn-primary me-2" %>
-    <%= button_to 'Delete Reservation', reservation_path(@reservation), method: :delete, form: { data: { turbo_confirm: 'Are you sure?', turbo_method: :delete } }, class: 'btn btn-danger' %>
+      <%= link_to @reservation, data: { turbo_method: :delete }, class: "btn btn-danger" do %>
+        <i class="fas fa-trash-alt"></i> Delete Reservation
+      <% end %>
     </div>
   <% end %>
 </div>
