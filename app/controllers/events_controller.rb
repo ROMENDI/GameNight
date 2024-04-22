@@ -38,6 +38,7 @@ class EventsController < ApplicationController
     @event = Event.new
     @games = Game.all.order(:title)
     @event.game_id = params[:game_id] if params[:game_id].present?
+
   end
   
   def create
