@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:edit, :update, :delete]
+  before_action :set_event, only: [:edit, :update, :destroy]
   
   def check_geocode_error
     puts errors.full_messages.to_sentence
@@ -67,11 +67,11 @@ class EventsController < ApplicationController
   end 
 
   def destroy
-    if @event
-      @event.destroy
-      redirect_to events_url, notice: 'Event was successfully deleted.', status: :see_other
-    else
-      redirect_to events_url, alert: 'Event not found.', status: :not_found
+    @event.destroy
+
+    respond_to do |format|
+      format.html { redirect_back fallback_location: my_events_path, notice: "Event was successfully destroyed." }
+      format.json { head :no_content }
     end
   end 
 
