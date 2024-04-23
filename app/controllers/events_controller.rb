@@ -1,10 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:edit, :update, :destroy]
 
-  def check_geocode_error
-    puts errors.full_messages.to_sentence
-  end
-
   def index
     @events = Event.where.not(host_id: current_user.id)
     @events = @events.where.not(id: current_user.reservations.select(:event_id))

@@ -41,30 +41,36 @@ task({ :sample_data => :environment }) do
     { name: "Adler Planetarium", address: "1300 S Lake Shore Dr, Chicago, IL 60605", latitude: 41.866333, longitude: -87.606782 }
   ]
   # Generate Events
-  30.times do
-    place = chicago_places.sample
-    event = Event.new(
-      title: "#{Faker::Game.genre} Night",
-      description: Faker::Lorem.paragraph(sentence_count: 3),
-      date_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default),
-      location: place[:address],
-      latitude: place[:latitude],
-      longitude: place[:longitude],
-      capacity: rand(1..8),
-      game: games.sample,
+  10.times do |i|
+    event = Event.create!(
+      title: "#{Faker::Game.genre} Night #{i}",
+      description: Faker::Lorem.sentence(word_count: 10),
+      date_time: Faker::Time.forward(days: 23),
+      location: "#{Faker::Address.street_address}, #{Faker::Address.city}",
+      capacity: rand(5..20),
       host: users.sample
     )
-    event.save
+
+    # Attempt to geocode each event after creation
+    result = Geocoder.geocode(event.location)
+    if result
+      event.update(latitude: result['lat'], longitude: result['lng'])
+    else
+      puts "Failed to geocode address: #{event.location}"
+    end
   end
 
+
   # Generate Reservations
-  60.times do
-    Reservation.create!(
-      event: Event.all.sample,
-      sender: users.sample,
-      status: ['yes', 'maybe'].sample
-    )
-  end
+    Event.all.each do |event|
+      unless event.reservations.where(sender: User.all.sample).exists?
+        Reservation.create!(
+          event: event,
+          sender: User.all.sample,
+          status: ['yes', 'maybe'].sample
+        )
+      end
+    end
 
   puts "Sample data generated successfully!"
   puts users
