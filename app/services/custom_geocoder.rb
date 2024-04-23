@@ -2,7 +2,7 @@ require 'net/http'
 require 'uri'
 require 'json'
 
-class Geocoder
+class CustomGeocoder
   def self.geocode(address)
     api_key = ENV['MAP_API_KEY']
     base_url = "https://maps.googleapis.com/maps/api/geocode/json"

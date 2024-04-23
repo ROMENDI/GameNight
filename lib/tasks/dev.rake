@@ -52,7 +52,7 @@ task({ :sample_data => :environment }) do
     )
 
     # Attempt to geocode each event after creation
-    result = Geocoder.geocode(event.location)
+    result = CustomGeocoder.geocode(event.location)
     if result
       event.update(latitude: result['lat'], longitude: result['lng'])
     else
