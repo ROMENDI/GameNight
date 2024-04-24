@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <h2 class="mb-4">Upcoming Events Near You</h2>
+  <h2 class="mb-4">All Upcoming Events</h2>
   <%= form_with url: events_path, method: :get, style: 'display: flex; flex-direction: row; align-items: center;' do |form| %>
   <%= form.label :date, "Date:", style: 'margin-right: 10px;' %>
   <%= form.date_field :date, style: 'margin-right: 10px;' %>
