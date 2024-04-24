@@ -41,12 +41,13 @@ task({ :sample_data => :environment }) do
     { name: "Adler Planetarium", address: "1300 S Lake Shore Dr, Chicago, IL 60605", latitude: 41.866333, longitude: -87.606782 }
   ]
   # Generate Events
-  10.times do |i|
+  30.times do 
+    place = chicago_places.sample
     event = Event.create!(
-      title: "#{Faker::Game.genre} Night #{i}",
+      title: "#{Faker::Game.genre} Night",
       description: Faker::Lorem.sentence(word_count: 10),
       date_time: Faker::Time.forward(days: 23),
-      location: "#{Faker::Address.street_address}, #{Faker::Address.city}",
+      location: place[:address],
       capacity: rand(5..20),
       host: users.sample
     )

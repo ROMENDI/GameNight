@@ -9,10 +9,9 @@ class EventsController < ApplicationController
       @events = @events.where("DATE(date_time) = ?", Date.parse(params[:date]))
     end
     # Filter by location
-    if params[:location].present?
-      @events = @events.where("location LIKE ?", "%#{params[:location]}%")
-    end
-
+    if params[:latitude].present? && params[:longitude].present?
+      @events = Event.near([params[:latitude].to_f, params[:longitude].to_f], 20) # assuming you have set up geocoder
+    end 
     # Filter by capacity
     if params[:capacity].present?
       @events = @events.where("capacity >= ?", params[:capacity].to_i)
