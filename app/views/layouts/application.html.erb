@@ -14,8 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Uncial+Antiqua&display=swap" rel="stylesheet">
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://maps.googleapis.com/maps/api/js?key=MAP_API_KEY&libraries=places&callback=initAutocomplete" async defer></script>
-    <script src="/app/javascript/autocomplete.js" type="module"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['MAP_API_KEY'] %>&libraries=places&callback=initMap" async></script>
   </head>
 
   <body>

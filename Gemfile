@@ -79,8 +79,7 @@ end
 # AppDev Gems
 # ===========
 gem "appdev_support"
-gem "awesome_print"
-gem "devise"       # to be removed
+gem "awesome_print"    
 gem "dotenv-rails"
 gem "faker"
 gem "htmlbeautifier"

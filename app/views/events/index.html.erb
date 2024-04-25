@@ -1,17 +1,15 @@
 <div class="container mt-5">
   <h2 class="mb-4">All Upcoming Events</h2>
-  <%= form_with url: events_path, method: :get, style: 'display: flex; flex-direction: row; align-items: center;' do |form| %>
+  <%= form_with url: events_path, method: :get, style: 'display: flex; flex-direction: row; align-items: center;', data: { controller: "autocomplete" } do |form| %>
   <%= form.label :date, "Date:", style: 'margin-right: 10px;' %>
   <%= form.date_field :date, style: 'margin-right: 10px;' %>
-
   <%= form.label :location, "Location:", style: 'margin-right: 10px;' %>
   <%= form.text_field :location, id: 'autocomplete', style: 'margin-right: 10px;' %>
-
   <%= form.label :capacity, "Minimum Event Size:", style: 'margin-right: 10px;' %>
   <%= form.number_field :capacity, style: 'margin-right: 10px;' %>
 
   <%= form.button "<i class='fas fa-search'></i> Search".html_safe, class: 'btn btn-secondary' %>
-<% end %>
+  <% end %>
   <hr>
   <div class="row">
     <% @events.each do |event| %>
