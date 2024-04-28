@@ -1,8 +1,24 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:edit, :update, :delete]
+  before_action :set_event, only: [:edit, :update, :destroy]
 
   def index
-    @events = Event.all
+    @events = Event.where.not(host_id: current_user.id)
+    @events = @events.where.not(id: current_user.reservations.select(:event_id))
+    # Filter by date
+    if params[:date].present?
+      @events = @events.where("DATE(date_time) = ?", Date.parse(params[:date]))
+    end
+    # Filter by location
+    #if params[:latitude].present? && params[:longitude].present?
+      #@events = Event.near([params[:latitude].to_f, params[:longitude].to_f], 20) # assuming you have set up geocoder
+    #end 
+    if params[:location].present?
+      @events = @events.where("location LIKE ?", "%#{params[:location]}%")
+    end
+    # Filter by capacity
+    if params[:capacity].present?
+      @events = @events.where("capacity >= ?", params[:capacity].to_i)
+    end
   end
 
   def show
@@ -10,28 +26,26 @@ class EventsController < ApplicationController
   end
 
   def my_events
-    @hosted_events = current_user.hosted_events
-    @reserved_events = current_user.reserved_events 
+    @hosted_events = current_user.hosted_events.order(date_time: :asc)
+    @reserved_events = current_user.reserved_events.order(date_time: :asc)
   end
-
 
   def new
     @event = Event.new
     @games = Game.all.order(:title)
+    @event.game_id = params[:game_id] if params[:game_id].present?
   end
-  
+
   def create
     @event = Event.new(event_params)
     @event.host = current_user # Assuming your event model has a 'host' association to the user
-  
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: "Event was successfully created." }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+
+    if @event.valid?
+      @event.save
+      redirect_to @event
+    else
+      @games = Game.all.order(:title)  # or some other necessary collection
+      render :new
     end
   end
 
@@ -40,20 +54,20 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
-      redirect_to @event, notice: 'Event was successfully updated.'
+      redirect_to @event, notice: "Event was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
-  end 
+  end
 
   def destroy
-    if @event
-      @event.destroy
-      redirect_to events_url, notice: 'Event was successfully deleted.', status: :see_other
-    else
-      redirect_to events_url, alert: 'Event not found.', status: :not_found
+    @event.destroy
+
+    respond_to do |format|
+      format.html { redirect_back fallback_location: my_events_path, notice: "Event was successfully destroyed." }
+      format.json { head :no_content }
     end
-  end 
+  end
 
   private
 
@@ -64,5 +78,4 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:title, :description, :date_time, :location, :capacity, :game_id)
   end
-  
 end

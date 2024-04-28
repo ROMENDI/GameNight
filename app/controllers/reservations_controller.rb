@@ -1,6 +1,11 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:show, :edit, :update, :destroy]
-  
+  before_action :set_reservation, only: [:edit, :update, :destroy]
+
+
+  def show
+    
+  end
+
   def new
     @event = Event.find(params[:event_id])
     @reservation = Reservation.new
@@ -11,11 +16,11 @@ class ReservationsController < ApplicationController
     @reservation.sender = current_user # Assuming you have user authentication
 
     if @reservation.save
-      redirect_to @reservation.event, notice: 'Reservation was successfully created.'
+      redirect_to @reservation.event, notice: "Reservation was successfully created."
     else
-    @event = @reservation.event
-    flash.now[:alert] = @reservation.errors.full_messages.to_sentence
-    render 'events/show'
+      @event = @reservation.event
+      flash.now[:alert] = @reservation.errors.full_messages.to_sentence
+      render "events/show"
     end
   end
 
@@ -23,16 +28,20 @@ class ReservationsController < ApplicationController
 
   def update
     if @reservation.update(reservation_params)
-      redirect_to @reservation.event, notice: 'Reservation was successfully updated.'
+      redirect_to @reservation.event, notice: "Reservation was successfully updated."
     else
       render :edit
     end
   end
 
   def destroy
-    @event = @reservation.event 
-    @reservation.destroy
-    redirect_to @event, notice: 'Reservation was successfully cancelled.'
+    @reservation = Reservation.find(params[:id]) unless @reservation
+    @event = @reservation.event
+    if @reservation.destroy
+      redirect_to @event, notice: 'Reservation was successfully cancelled.'
+    else
+      redirect_to @event, alert: 'Failed to delete the reservation.'
+    end
   end
 
   private

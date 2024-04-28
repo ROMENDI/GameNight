@@ -1,21 +1,33 @@
 <div class="container mt-5">
-  <h2>Games Catalog</h2>
+  <h2 class="mb-4">Games Catalog (A-Z)</h2>
+  <div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6"> <!-- Adjust the column size as needed -->
+      <%= form_with url: games_path, method: :get, class: "d-flex" do |form| %>
+        <%= form.text_field :search, placeholder: "Search games...", class: "form-control me-2" %>
+        <%= form.submit "Search", class: "btn btn-outline-secondary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
   <hr>
   <div class="row">
     <% @games.each do |game| %>
       <div class="col-md-4 mb-4">
-        <div class="card h-100">
+        <div class="card h-100 shadow-sm"> <!-- Added shadow for depth -->
           <% if game.image_url.present? %>
-            <img src="<%= game.image_url %>" class="card-img-top" alt="<%= game.title %>">
+            <img src="<%= game.image_url %>" class="card-img-top img-fluid" alt="<%= game.title %>" style="height: 250px; object-fit: cover;"> <!-- Adjusted for consistent height & object-fit -->
           <% else %>
-            <img src="https://via.placeholder.com/150" class="card-img-top" alt="Placeholder Image">
+            <img src="https://via.placeholder.com/150" class="card-img-top img-fluid" alt="Placeholder Image" style="height: 250px; object-fit: cover;">
           <% end %>
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h5 class="card-title"><%= game.title %></h5>
-            <p class="card-text"><%= game.description.truncate(100) %></p>
-          </div>
-          <div class="card-footer">
-            <%= link_to 'View Events', game_path(game), class: "btn btn-primary" %>
+            <p class="card-text flex-grow-1"><%= game.description.truncate(100) %></p>
+            <div class="mt-3">
+              <%= link_to game_path(game), class: "btn btn-primary w-100" do %>
+                <i class="fas fa-eye"></i> View Events
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
