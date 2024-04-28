@@ -2,6 +2,7 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.1"
+gem 'http'
 gem 'devise'
 gem 'faker'
 gem 'geocoder'
@@ -78,8 +79,7 @@ end
 # AppDev Gems
 # ===========
 gem "appdev_support"
-gem "awesome_print"
-gem "devise"       # to be removed
+gem "awesome_print"    
 gem "dotenv-rails"
 gem "faker"
 gem "htmlbeautifier"

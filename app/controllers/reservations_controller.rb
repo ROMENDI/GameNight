@@ -1,5 +1,10 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :set_reservation, only: [:edit, :update, :destroy]
+
+
+  def show
+    
+  end
 
   def new
     @event = Event.find(params[:event_id])
@@ -30,9 +35,13 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
+    @reservation = Reservation.find(params[:id]) unless @reservation
     @event = @reservation.event
-    @reservation.destroy
-    redirect_to @event, notice: "Reservation was successfully cancelled."
+    if @reservation.destroy
+      redirect_to @event, notice: 'Reservation was successfully cancelled.'
+    else
+      redirect_to @event, alert: 'Failed to delete the reservation.'
+    end
   end
 
   private

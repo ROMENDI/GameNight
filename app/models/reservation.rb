@@ -24,5 +24,15 @@ class Reservation < ApplicationRecord
   belongs_to :event
   enum status: { yes: 0, maybe: 1 }
   validates :status, presence: true
-  validates :user_id, uniqueness: { scope: :event_id, message: "You have already made a reservation for this event." }
+  validates :sender_id, uniqueness: { scope: :event_id, message: "You have already made a reservation for this event." }
+
+  validate :host_cannot_reserve
+
+  private 
+
+  def host_cannot_reserve
+    if event.host == sender_id
+      errors.add(:base, "Hosts cannot reserve their own event")
+    end
+  end
 end
