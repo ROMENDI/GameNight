@@ -2,7 +2,7 @@
   <h2 class="mb-4">Games Catalog (A-Z)</h2>
   <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-md-6"> <!-- Adjust the column size as needed -->
+    <div class="col-md-6"> 
       <%= form_with url: games_path, method: :get, class: "d-flex" do |form| %>
         <%= form.text_field :search, placeholder: "Search games...", class: "form-control me-2" %>
         <%= form.submit "Search", class: "btn btn-outline-secondary" %>
@@ -14,7 +14,7 @@
   <div class="row">
     <% @games.each do |game| %>
       <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm"> <!-- Added shadow for depth -->
+        <div class="card h-100 shadow-sm"> 
           <% if game.image_url.present? %>
             <img src="<%= game.image_url %>" class="card-img-top img-fluid" alt="<%= game.title %>" style="height: 250px; object-fit: cover;"> <!-- Adjusted for consistent height & object-fit -->
           <% else %>
