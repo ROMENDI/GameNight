@@ -40,10 +40,6 @@ h1, h2, h3 {
 .btn:hover {
   transform: scale(1.1);
 }
-.table-hover tbody tr:hover {
-  background-color: #f8f9fa; 
-  transition: background-color 0.3s ease-in-out; 
-}
 
 .table-hover tbody tr:hover td {
   font-weight: bold; 

@@ -8,10 +8,12 @@ Rails.application.routes.draw do
   resources :games, only: [:index, :show]
 
   resources :events
+  get 'my_events', to: 'events#my_events'
+
     
   resources :reservations, except: [:index]
   
   resources :users, only: [:show]
 
-  get 'my_events', to: 'events#my_events'
+  
 end
