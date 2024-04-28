@@ -12,7 +12,7 @@
           <% if @event.game.image_url.present? %>
             <div>
               <%= link_to game_path(@event.game) do %>
-                <%= image_tag @event.game.image_url, class: "img-fluid rounded-start", alt: "#{@event.game.title}" %>
+                <%= image_tag @event.game.image_url, class: "img-fluid rounded-start img-glow", style: "max-width: 200px; height: auto; margin: 20px 0;", alt: "#{@event.game.title}", title: "Click to see more events for this game" %>
               <% end %>
             </div>
           <% end %>
@@ -21,7 +21,7 @@
       <p class="card-text"><%= @event.description %></p>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Location: <%= @event.location %></li>
-        <li class="list-group-item"> Hosted by:<%= link_to @event.host.username, user_path(@event.host), class: "text-dark" %> </li>
+        <li class="list-group-item"> Hosted by:<%= image_tag @event.host.pfp_url, class: "rounded-circle", style: "width: 40px; height: 40px;" %><%= link_to @event.host.username, user_path(@event.host), class: "text-light" %> </li>
         <% if @event.capacity - @event.reservations.where(status: 'yes').count > 0 %>
           <li class="list-group-item">Remaining Spots: <%= @event.capacity - @event.reservations.where(status: 'yes').count %> </li>
         <% else %>
@@ -30,26 +30,37 @@
 
       </ul>
       <% if user_signed_in? %>
-        <% if current_user == @event.host || @event.reservations.exists?(sender: current_user) %>
-          <%= link_to 'Back to My Events', my_events_path, class: "btn btn-primary mt-3" %>
+        <% current_reservation = @event.reservations.find_by(sender: current_user) %>
+        <% if current_user == @event.host || current_reservation %>
+          <%= link_to my_events_path, class: "btn btn-primary mt-3" do %>
+            <i class="fas fa-arrow-left"></i> Back to My Events
+          <% end %>
           <% if current_user == @event.host %>
-            <%= link_to 'Edit Event', edit_event_path(@event), class: "btn btn-warning mt-3 mr-3" %>
-            <%= link_to 'Delete Event', event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger mt-3' %>
+            <%= link_to edit_event_path(@event), class: "btn btn-warning mt-3 mr-3" do %>
+              <i class="fas fa-edit"></i> Edit Event
+            <% end %>
+          <% else %> 
+            <%= link_to edit_reservation_path(current_reservation), class: "btn btn-secondary mt-3" do %>
+              <i class="fas fa-pen"></i> Update Reservation
+            <% end %>
           <% end %>
         <% elsif @event.capacity - @event.reservations.where(status: 'yes').count > 0 %>
-          <%= link_to 'Make Reservation', new_reservation_path(event_id: @event.id), class: "btn btn-primary mt-3" %>
+          <%= link_to new_reservation_path(event_id: @event.id), class: "btn btn-primary mt-3" do %>
+            <i class="fas fa-calendar-plus"></i> Make Reservation
+          <% end %>
         <% end %>
       <% end %>
 
       <% unless user_signed_in? && (@event.host == current_user || @event.reservations.exists?(sender: current_user)) %>
-        <%= link_to 'Back to Events', events_path, class: "btn btn-secondary mt-3" %>
+        <%= link_to events_path, class: "btn btn-secondary mt-3" do %>
+          <i class="fas fa-arrow-left"></i> Back to Events
+        <% end %>
       <% end %>
-
     </div>
   </div>
   <hr>
   <h3>Reservations</h3>
-  <table class="table">
+  <table class="table table-hover"">
     <thead>
       <tr>
         <th>Username</th>
@@ -60,7 +71,8 @@
       <% @event.reservations.each do |reservation| %>
         <tr>
           <td>
-            <%= link_to reservation.sender.username, user_path(reservation.sender), class: "text-dark" %>
+            <%= image_tag reservation.sender.pfp_url, class: "rounded-circle", style: "width: 40px; height: 40px;" %>
+            <%= link_to reservation.sender.username, user_path(reservation.sender), class: "text-light" %>
           </td>
           <td><%= reservation.status.titleize %></td>
         </tr>

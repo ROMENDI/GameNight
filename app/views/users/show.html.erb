@@ -24,6 +24,20 @@
               <p class="card-text">Phone: <%= @user.phone_number %></p>
             <% end %>
           <% end %>
+          <% if @user.hosted_events.any? %>
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2">Events Hosting:</h6>
+              <ul class="list-group list-group-flush">
+                <% @user.hosted_events.each do |event| %>
+                  <li class="list-group-item">
+                    <%= link_to event.title, event_path(event) %>
+                    <br>
+                    <small class="text-muted"><%= event.date_time.strftime("%B %d, %Y at %I:%M%p") %></small>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
