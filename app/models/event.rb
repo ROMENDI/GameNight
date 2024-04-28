@@ -26,6 +26,8 @@
 #  host_id  (host_id => users.id)
 #
 class Event < ApplicationRecord
+  geocoded_by :location
+  after_validation :geocode, if: ->(obj){ obj.location.present? and obj.location_changed? }
   belongs_to :game, optional: true
   belongs_to :host, class_name: 'User', foreign_key:'host_id'
   has_many :reservations, dependent: :destroy
@@ -33,4 +35,11 @@ class Event < ApplicationRecord
   validates :date_time, presence: true
   validates :location, presence: true
   validates :capacity, numericality: { greater_than_or_equal_to: 1, only_integer: true }
+  
+  def geocode
+    super
+  rescue StandardError => e
+    errors.add(:base, "Geocoding failed: #{e.message}")
+  end
+  
 end
