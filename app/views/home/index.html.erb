@@ -1,37 +1,86 @@
 <body>
-<div class="container py-5">
+  <div class="container py-5">
     <header class="text-center mb-5">
       <h1>Welcome to GameNight!</h1>
-      <p class="fs-4">Discover & play board games with fellow enthusiasts around you!</p>
+      <p class="lead text-muted">Struggle to find board game lovers nearby? GameNight allows you to connect & play with fellow enthusiasts in your area!</p>
       <% unless user_signed_in? %>
-        <a href="<%= new_user_registration_path %>" class="btn btn-primary btn-lg me-2">Sign Up</a>
-        <a href="<%= new_user_session_path %>" class="btn btn-outline-secondary btn-lg">Login</a>
+        <div class="btn-group mt-4">
+          <a href="<%= new_user_registration_path %>" class="btn btn-primary btn-lg">Sign Up</a>
+          <a href="<%= new_user_session_path %>" class="btn btn-secondary btn-lg">Login</a>
+        </div>
       <% else %>
-        <%= link_to events_path, class: "btn btn-success btn-lg" do %>
+        <%= link_to events_path, class: "btn btn-success btn-lg mt-4 ", style: "padding: 1rem 1.5rem; font-size: 1.5rem;" do %>
           <i class="fas fa-dice"></i> Discover Events
-        <%end %>
+        <% end %>
       <% end %>
     </header>
-    <br>
-    <div class="text-center mb-5">
-      <h2>How GameNight Works</h2>
-      <div class="row mt-4">
+    <section class="how-it-works my-5 py-5">
+      <h3 class="text-center mb-5">How GameNight Works</h3>
+      <div class="row text-center g-4">
         <div class="col-md-4">
-          <i class="fa-solid fa-calendar-days fa-3x"></i>
-          <h3 class="mt-2">Find an Event</h3>
-          <p>Browse through upcoming game nights near your location.</p>
+          <div class="feature-item p-4 rounded">
+            <i class="fa-solid fa-calendar-days fa-4x text-primary mb-3"></i>
+            <h3>Find an Event</h3>
+            <p>Browse through upcoming game nights near your location.</p>
+          </div>
         </div>
         <div class="col-md-4">
-          <i class="fa-solid fa-users fa-3x"></i>
-          <h3 class="mt-2">Join the Fun</h3>
-          <p>Sign up for an event you like and meet new people.</p>
+          <div class="feature-item p-4 rounded">
+            <i class="fa-solid fa-users fa-4x text-success mb-3"></i>
+            <h3>Join the Fun</h3>
+            <p>Sign up for an event you like and meet new people.</p>
+          </div>
         </div>
         <div class="col-md-4">
-          <i class="fa-solid fa-plus fa-3x"></i>
-          <h3 class="mt-2">Host Your Own</h3>
-          <p>Can't find an event that suits you? Host your own and invite others to join.</p>
+          <div class="feature-item p-4 rounded">
+            <i class="fa-solid fa-plus fa-4x text-warning mb-3"></i>
+            <h3>Host Your Own</h3>
+            <p>Can't find an event that suits you? Host your own and allow others to join.</p>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+    <hr>
+    <section class="action-videos my-5 py-5">
+      <h2 class="text-center mb-5">See GameNight in Action</h2> <br>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <video width="100%" controls preload="none" poster = "/discover_thumbnail.png">
+            <source src="/discover.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="col-md-6 d-flex align-items-center justify-content-center text-center">
+          <div>
+            <h3>Discover Events</h3>
+            <p>Watch how easy it is to find and join events.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <video width="100%" controls preload="none" poster = "/my_events_thumbnail.png">
+            <source src="/manage_events.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="col-md-6 d-flex align-items-center justify-content-center text-center">
+          <div>
+            <h3>My Events</h3>
+            <p>Learn how to manage your events effectively.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <video width="100%" controls preload="none" poster = "/games_thumbnail.png">
+            <source src="/games.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="col-md-6 d-flex align-items-center justify-content-center text-center">
+          <div>
+            <h3>Games Catalog</h3>
+            <p>Explore the wide variety of games available at your fingertips.</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </body>

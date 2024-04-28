@@ -16,15 +16,10 @@
 
  body {
   font-family: "Pirata One", system-ui;
-  font-weight: 400;
-  font-style: normal;
 }
 
 h1, h2, h3 {
   font-family: "Pirata One", system-ui;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 48px;
 }
 
 .card {
@@ -60,7 +55,6 @@ h1, h2, h3 {
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.9); 
 }
 
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -71,4 +65,3 @@ h1, h2, h3 {
     transform: translateY(0);
   }
 }
-
