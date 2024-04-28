@@ -24,9 +24,7 @@ h1, h2, h3 {
   font-family: "Pirata One", system-ui;
   font-weight: 400;
   font-style: normal;
-  font-size: 48px;
 }
-
 .card {
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; 
   animation: fadeIn 0.5s ease-out;
@@ -59,8 +57,15 @@ h1, h2, h3 {
   transition: box-shadow 0.3s ease-in-out;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.9); 
 }
-
-
+.feature-item, .video-wrapper {
+  background: white; /* White background for content items */
+  border: 1px solid #ddd; /* Subtle borders for definition */
+  transition: transform 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+.feature-item:hover, .video-wrapper:hover {
+  transform: scale(1.05); /* Slightly enlarging items on hover */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1); /* Adding shadow on hover for a 'lifting' effect */
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -71,4 +76,3 @@ h1, h2, h3 {
     transform: translateY(0);
   }
 }
-
