@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
     @events = Event.where.not(host_id: current_user.id)
@@ -8,10 +8,7 @@ class EventsController < ApplicationController
     if params[:date].present?
       @events = @events.where("DATE(date_time) = ?", Date.parse(params[:date]))
     end
-    # Filter by location
-    #if params[:latitude].present? && params[:longitude].present?
-      #@events = Event.near([params[:latitude].to_f, params[:longitude].to_f], 20) # assuming you have set up geocoder
-    #end 
+    #Filter by location
     if params[:location].present?
       @events = @events.where("location LIKE ?", "%#{params[:location]}%")
     end
@@ -38,18 +35,15 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.host = current_user # Assuming your event model has a 'host' association to the user
+    @event.host = current_user
 
     if @event.valid?
       @event.save
       redirect_to @event
     else
-      @games = Game.all.order(:title)  # or some other necessary collection
+      @games = Game.all.order(:title)
       render :new
     end
-  end
-
-  def edit
   end
 
   def update

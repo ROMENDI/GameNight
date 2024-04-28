@@ -1,11 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:edit, :update, :destroy]
-
-
-  def show
-    
-  end
-
+  
   def new
     @event = Event.find(params[:event_id])
     @reservation = Reservation.new
