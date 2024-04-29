@@ -35,6 +35,11 @@ class Event < ApplicationRecord
   validates :date_time, presence: true
   validates :location, presence: true
   validates :capacity, numericality: { greater_than_or_equal_to: 1, only_integer: true }
+  scope :excluding_host, ->(user_id) { where.not(host_id: user_id) }
+  scope :excluding_reserved, ->(user_ids) { where.not(id: user_ids) }
+  scope :by_date, ->(date) { where("DATE(date_time) = ?", Date.parse(date)) if date.present? }
+  scope :by_location, ->(location) { where("location LIKE ?", "%#{location}%") if location.present? }
+  scope :by_capacity, ->(capacity) { where("capacity >= ?", capacity.to_i) if capacity.present? }
   
   def geocode
     super
