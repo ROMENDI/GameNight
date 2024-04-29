@@ -1,12 +1,11 @@
 class GamesController < ApplicationController
   def index
-    @games = Game.order(:title)
-    #Filter by game name
     if params[:search].present?
-      @games = Game.where('title LIKE ?', "%#{params[:search]}%")
+      @games = Game.search_by_title(params[:search]).order(:title)
     else
       @games = Game.order(:title)
     end
+    
   end
 
   def show
