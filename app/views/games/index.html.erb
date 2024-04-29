@@ -2,6 +2,7 @@
   <h2 class="mb-4">Games Catalog (A-Z)</h2>
   <div class="container mt-5">
   <div class="row justify-content-center">
+  <!-- Search form for games -->
     <div class="col-md-6"> 
       <%= form_with url: games_path, method: :get, class: "d-flex" do |form| %>
         <%= form.text_field :search, placeholder: "Search games...", class: "form-control me-2" %>
@@ -11,6 +12,7 @@
   </div>
 </div>
   <hr>
+  <!-- Games display grid -->
   <div class="row">
     <% @games.each do |game| %>
       <div class="col-md-4 mb-4">
@@ -22,7 +24,7 @@
           <% end %>
           <div class="card-body d-flex flex-column">
             <h5 class="card-title"><%= game.title %></h5>
-            <p class="card-text flex-grow-1"><%= game.description.truncate(100) %></p>
+            <p class="card-text flex-grow-1"><%= game.description.truncate(100) %></p> 
             <div class="mt-3">
               <%= link_to game_path(game), class: "btn btn-primary w-100" do %>
                 <i class="fas fa-eye"></i> View Events

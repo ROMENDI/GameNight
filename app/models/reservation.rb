@@ -25,11 +25,11 @@ class Reservation < ApplicationRecord
   enum status: { yes: 0, maybe: 1 }
   validates :status, presence: true
   validates :sender_id, uniqueness: { scope: :event_id, message: "You have already made a reservation for this event." }
-
   validate :host_cannot_reserve
 
   private 
 
+  # Prevents event host from reserving their own event 
   def host_cannot_reserve
     if event.host == sender_id
       errors.add(:base, "Hosts cannot reserve their own event")

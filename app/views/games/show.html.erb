@@ -3,6 +3,7 @@
   <br>
   <p class="text-muted"><%= truncate_to_sentences(@game.description, sentence_count: 3) %></p>
   <hr>
+  <!-- Lists all upcoming events for said game -->
   <% if @events.present? %>
     <div class="row">
       <% @events.each do |event| %>
@@ -21,6 +22,7 @@
       <% end %>
     </div>
   <% else %>
+  <!-- If no upcoming events then prompt to host event -->
     <p class="text-muted">There are currently no upcoming events for <%= @game.title %>. Check back soon or host your own event!</p>
     <%= link_to new_event_path(game_id: @game.id), class: "btn btn-success" do %>
       <i class="fas fa-plus-circle"></i> Host Event

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'my_events', to: 'events#my_events'
 
     
-  resources :reservations, except: [:index]
+  resources :reservations, except: [:index,:show]
   
   resources :users, only: [:show]
 

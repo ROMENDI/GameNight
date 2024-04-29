@@ -8,6 +8,7 @@ class BoardGameGeekService
     Game.delete_all
     User.delete_all
     game_ids = (1..50).to_a
+    # Iterates through each game ID and fetches data from the API.
     game_ids.each do |game_id|
       response = HTTParty.get("https://boardgamegeek.com/xmlapi2/thing?id=#{game_id}")
 
@@ -20,6 +21,7 @@ class BoardGameGeekService
     end
   end
 
+  # Extracts and saves game data from the XML response.
   def self.extract_game_data(parsed_response)
     primary_name_node = parsed_response.xpath("//item/name[@type='primary']").first
     game_title = primary_name_node ? primary_name_node["value"] : "Unknown Title"
