@@ -1,5 +1,6 @@
 <div class="container mt-5">
   <h2 class="mb-4">All Upcoming Events</h2>
+  <!-- Event Search Filters -->
   <%= form_with url: events_path, method: :get, style: 'display: flex; flex-direction: row; align-items: center;', data: { controller: "autocomplete" } do |form| %>
   <%= form.label :date, "Date:", style: 'margin-right: 10px;' %>
   <%= form.date_field :date, style: 'margin-right: 10px;' %>
@@ -11,6 +12,7 @@
   <%= form.button "<i class='fas fa-search'></i> Search".html_safe, class: 'btn btn-secondary' %>
   <% end %>
   <hr>
+  <!-- Event Display Results -->
   <div class="row">
     <% @events.each do |event| %>
       <div class="col-md-4 mb-4">

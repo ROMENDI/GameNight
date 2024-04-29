@@ -1,4 +1,3 @@
-<%# app/views/reservations/new.html.erb %>
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-8 offset-md-2">
@@ -6,11 +5,13 @@
         <div class="card-header">
           <h2>New Reservation for <%= @event.title %></h2>
         </div>
+        <!-- Event Details -->
         <div class="card-body">
           <p class="card-text"><strong>Location:</strong> <%= @event.location %></p>
           <p class="card-text"><strong>Time:</strong> <%= @event.date_time.strftime("%B %d, %Y at %H:%M") %></p>
           <p class="card-text"><strong>Host:</strong> <%= @event.host.username %></p>
           <p class="card-text">
+          <!-- Contact info for host -->
             <strong>Contact:</strong>
             <%= @event.host.email %>,
             <%= @event.host.phone_number %>

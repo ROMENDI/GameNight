@@ -3,6 +3,7 @@
     <header class="text-center mb-5">
       <h1>Welcome to GameNight!</h1>
       <p class="lead text-muted">Struggle to find board game lovers nearby? GameNight allows you to connect & play with fellow enthusiasts in your area!</p>
+      <!-- CTA button  -->
       <% unless user_signed_in? %>
         <div class="btn-group mt-4">
           <a href="<%= new_user_registration_path %>" class="btn btn-primary btn-lg">Sign Up</a>
@@ -14,6 +15,8 @@
         <% end %>
       <% end %>
     </header>
+
+    <!-- How it Works Section -->
     <section class="how-it-works my-5 py-5">
       <h3 class="text-center mb-5">How GameNight Works</h3>
       <div class="row text-center g-4">
@@ -41,6 +44,7 @@
       </div>
     </section>
     <hr>
+    <!-- Embedded Demo Videos -->
     <section class="action-videos my-5 py-5">
       <h2 class="text-center mb-5">See GameNight in Action</h2> <br>
       <div class="row g-4">

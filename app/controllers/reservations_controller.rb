@@ -1,11 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:edit, :update, :destroy]
-
-
-  def show
-    
-  end
-
+  
   def new
     @event = Event.find(params[:event_id])
     @reservation = Reservation.new
@@ -13,7 +8,7 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
-    @reservation.sender = current_user # Assuming you have user authentication
+    @reservation.sender = current_user 
 
     if @reservation.save
       redirect_to @reservation.event, notice: "Reservation was successfully created."

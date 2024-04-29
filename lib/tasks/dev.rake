@@ -39,7 +39,7 @@ task({ :sample_data => :environment }) do
 
   users = User.all
   games = Game.all
-  # List of famous places in Chicago with latitude and longitude
+  # List of famous places in America 
   places = [
     { name: "Statue of Liberty", address: "Liberty Island, New York, NY 10004" },
     { name: "Golden Gate Bridge", address: "Golden Gate Bridge, San Francisco, CA 94129" },

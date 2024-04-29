@@ -5,13 +5,15 @@ Rails.application.routes.draw do
   # Root route
   root "home#index"
 
-  resources :games
+  resources :games, only: [:index, :show]
 
   resources :events
-    
-  resources :reservations
-  
-  resources :users, only: [:show, :edit, :update]
-
   get 'my_events', to: 'events#my_events'
+
+    
+  resources :reservations, except: [:index,:show]
+  
+  resources :users, only: [:show]
+
+  
 end

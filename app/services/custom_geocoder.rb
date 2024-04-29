@@ -2,6 +2,8 @@ require 'net/http'
 require 'uri'
 require 'json'
 
+# Geocodes an address string returning the latitude and longitude. 
+# Currently geocoding is not being used in present functionality but will be used in future iteraitons. 
 class CustomGeocoder
   def self.geocode(address)
     api_key = ENV['MAP_API_KEY']
