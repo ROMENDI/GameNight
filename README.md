@@ -76,3 +76,43 @@ I welcome contributions. Here’s how you can contribute:
 ### Review Process
 
 Contributions will be reviewed by me and feedback or approval will be given. 
+
+## API Documentation
+
+### BoardGameGeek API Interaction
+
+This service utilizes the BoardGameGeek XML API2 for fetching board game data. Below is the description of the method used:
+
+### Endpoint
+- **GET** `https://boardgamegeek.com/xmlapi2/thing`
+
+### Parameters
+- `id` : A unique identifier for the game. This service iterates over a range of IDs to fetch multiple games.
+
+### Response Format
+- The response is in XML format. The service parses this XML to extract relevant game data like the title, description, and image URL.
+
+### Example of Extracted Data
+- **Title**: Extracted from the primary name node in the XML.
+- **Description**: Plain text, extracted and cleaned of unnecessary encoding.
+- **Image URL**: Direct URL to the game's image.
+
+### Authentication
+- The BoardGameGeek API does not require authentication for this type of request.
+
+## FAQs / Troubleshooting
+
+### Q1: What happens if the API call fails?
+**A1**: The service logs an error message with the game ID and response code. No data will be saved for that game.
+
+### Q2: How can I change the range of game IDs fetched?
+**A2**: Modify the `game_ids` array in the `import_games` method to include the IDs you wish to fetch.
+
+### Q3: What if I can't find a specific game in the catalog?
+**A3**: Presently the games catalog is heavily limited. If you wish to add a new game, make a suggestion by contacting rohan.mendiratta01@gmail.com. 
+
+### Q4: Is there a way to connect with other players before the event?
+**A4**: Yes, each game night event has the profiles of the host as well as each of the reserved guests. Visit their profiles to view their contact details. 
+
+### Q5: How do I submit a bug or feature request?
+**A5**: To submit a bug or feature request, please use the GitHub Issues section of our repository. 
