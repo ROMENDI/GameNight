@@ -40,7 +40,7 @@ These instructions will get you a copy of GameNight up and running on your local
 4. **Sample Data**
 
   
-    Copy the sample environment file and set up your environment variables: `rake sample_data`
+    Import games into database and generate sample data: `rake import_games` & `rake sample_data`
 
 5. **Start the Server**
 
