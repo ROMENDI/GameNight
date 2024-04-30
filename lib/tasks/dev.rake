@@ -101,7 +101,7 @@ task({ :sample_data => :environment }) do
       host: users.sample,
       game: games.sample
     )
-    
+  end 
   # Generate Reservations
   Event.all.each do |event|
     unless event.reservations.where(sender: User.all.sample).exists?
