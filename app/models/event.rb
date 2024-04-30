@@ -26,8 +26,8 @@
 #  host_id  (host_id => users.id)
 #
 class Event < ApplicationRecord
-  geocoded_by :location
-  after_validation :geocode, if: ->(obj){ obj.location.present? and obj.location_changed? }
+  #geocoded_by :location
+  #after_validation :geocode, if: ->(obj){ obj.location.present? and obj.location_changed? }
 
   #Associations
   belongs_to :game, optional: true

@@ -101,16 +101,7 @@ task({ :sample_data => :environment }) do
       host: users.sample,
       game: games.sample
     )
-
-    # Attempt to geocode each event after creation
-    result = CustomGeocoder.geocode(event.location)
-    if result
-      event.update(latitude: result["lat"], longitude: result["lng"])
-    else
-      puts "Failed to geocode address: #{event.location}"
-    end
-  end
-
+    
   # Generate Reservations
   Event.all.each do |event|
     unless event.reservations.where(sender: User.all.sample).exists?
