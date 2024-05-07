@@ -4,6 +4,7 @@
       <div class="card">
         <%# Display profile picture only if present %>
         <% if @user.pfp_url.present? %>
+         <%# small nitpick; use rails image_tag%>
           <img src="<%= @user.pfp_url %>" class="card-img-top img-fluid w-50 mx-auto d-block" alt="<%= @user.username %>'s profile picture">
         <% end %>
 

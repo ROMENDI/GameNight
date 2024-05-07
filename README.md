@@ -116,3 +116,29 @@ This service utilizes the BoardGameGeek XML API2 for fetching board game data. B
 
 ### Q5: How do I submit a bug or feature request?
 **A5**: To submit a bug or feature request, please use the GitHub Issues section of our repository. 
+
+<hr>
+
+# Code Review
+
+## Documentation
+- Great read me; very thorough
+
+## Version Control
+- Good use of git & github. 
+- Good branching
+- Area for improvement. You created only one issue which was not connected to a branch or pull request.
+- Also, could have used a project board to help organize tasks
+
+## Code Hygiene
+- Not an issue since both were implemented correctly; however, I am curious as to why you chose to use form_for in certain areas and form_with in others!
+
+## Frontend
+- Overall, good responsive front end design
+- Good use of alt tags and aria labels
+- Could have moved more reusable components to partial view templates to improve code readability
+
+## Backend
+- Fantastic job on install instructions and project onboarding/readability! Small nitpick; there is an error when running `rake import_games`. Some of the game data does not load. However, we were still able to open and review the app in development.
+- Could improve security and authorization by adding an authorization framework like Pundit
+- Great job utilizing services!
