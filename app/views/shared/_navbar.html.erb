@@ -1,3 +1,4 @@
+<%# Add class & move inline styles to css style sheet%>
 <nav class="navbar navbar-expand-lg navbar-dark mb-4" style="background-color: #065535;">
   <div class="container">
     <%= link_to root_path, class: "navbar-brand" do %>
@@ -8,6 +9,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarGameNight">
+      <%# Good opportunity to use pundit & policies!%>
       <% if user_signed_in? %>
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
